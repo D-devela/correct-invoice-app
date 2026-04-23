@@ -10,7 +10,7 @@ const STORAGE_KEY = 'invoices';
 
 // Navbar Component
 const Navbar = () => {
-  const { theme, toggleTheme } = React.useContext(ThemeContext);
+  
   
   return (
     <nav className="navbar">
