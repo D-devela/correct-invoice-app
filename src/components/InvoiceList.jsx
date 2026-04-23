@@ -46,18 +46,40 @@ const InvoiceList = ({ invoices, onDelete, onMarkAsPaid }) => {
             </p>
           </div>
         ) : (
-          filteredInvoices.map(invoice => (
-            <Link to={`/invoice/${invoice.id}`} key={invoice.id} className="invoice-card">
-              <div className="invoice-id heading-s">{invoice.id}</div>
-              <div className="invoice-due body-variant">Due {invoice.dueDate}</div>
-              <div className="invoice-client body">{invoice.clientName}</div>
-              <div className="invoice-amount heading-s">£ {invoice.total.toFixed(2)}</div>
-              <StatusBadge status={invoice.status} />
-              <div className="invoice-arrow">→</div>
-            </Link>
-          ))
-        )}
+         filteredInvoices.map(invoice => (
+  <React.Fragment key={invoice.id}>
+    
+    {/* Desktop */}
+    <Link to={`/invoice/${invoice.id}`} className="invoice-card">
+      <div className="invoice-id heading-s">{invoice.id}</div>
+      <div className="invoice-due body-variant">Due {invoice.dueDate}</div>
+      <div className="invoice-client body">{invoice.clientName}</div>
+      <div className="invoice-amount heading-s">£ {invoice.total.toFixed(2)}</div>
+      <StatusBadge status={invoice.status} />
+      <div className="invoice-arrow">→</div>
+    </Link>
+
+    {/* Mobile */}
+    <Link to={`/invoice/${invoice.id}`} className="invoice-card-mobile">
+      <div className="mobile-row">
+        <span className="invoice-id heading-s">{invoice.id}</span>
+        <span className="invoice-client body">{invoice.clientName}</span>
       </div>
+
+      <div className="mobile-row">
+        <span className="invoice-due body-variant">Due {invoice.dueDate}</span>
+        <span className="invoice-amount heading-s">£ {invoice.total.toFixed(2)}</span>
+      </div>
+
+      <div className="mobile-status">
+        <StatusBadge status={invoice.status} />
+      </div>
+    </Link>
+
+  </React.Fragment>
+))
+        )}
+      </div>  
 
       <style>{`
         @media (max-width: 767px) {
